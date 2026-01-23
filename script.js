@@ -107,6 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // ============================================
     // E. MUSIC PLAYER 1 (KIRI)
     // ============================================
+// ============================================
+    // E. MUSIC PLAYER 1 (KIRI)
+    // ============================================
     const playBtn1 = document.getElementById('playBtn');
     const diskImage1 = document.getElementById('diskImage');
     const playIcon1 = document.getElementById('playIcon');
@@ -115,8 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentTimeEl1 = document.getElementById('currentTime');
     const durationTimeEl1 = document.getElementById('durationTime');
     
-    // GANTI 'lagu1.mp3' DENGAN FILE LOKAL ANDA
-    const audio1 = new Audio('lagu1.mp3'); 
+    // UPDATE: Menggunakan Link Dropbox Direct (www diganti dl.dropboxusercontent.com)
+    const audioSource1 = "https://dl.dropboxusercontent.com/scl/fi/vm7m1tiqk0xmf1ymyw6dd/opheliaa.mp3?rlkey=mhmp5p4sbckg6h2v3v71jfl1l&st=2f5mcfes&dl=0";
+    const audio1 = new Audio(audioSource1); 
     let isPlaying1 = false;
 
     if (playBtn1) {
@@ -135,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if(pauseIcon1) pauseIcon1.style.display = 'block';
                 }).catch(err => {
                     console.error("Error Lagu 1:", err);
-                    alert("Lagu 1 tidak ditemukan! Pastikan file 'lagu1.mp3' sudah diupload ke GitHub.");
+                    alert("Gagal memutar lagu. Pastikan koneksi lancar.");
                 });
             }
             isPlaying1 = !isPlaying1;
@@ -179,7 +183,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const durationTimeEl2 = document.getElementById('durationTime2');
 
     // GANTI 'lagu2.mp3' DENGAN FILE LOKAL ANDA
-    const audio2 = new Audio('lagu2.mp3'); 
+    const audioSource2 = "https://dl.dropboxusercontent.com/scl/fi/4cqz7pxjzoocze1zb295f/dieonthishill.mp3?rlkey=1bpev8red7xt23e368gph1gww&st=j30w8uik&dl=0";
+    const audio2 = new Audio(audioSource2); 
     let isPlaying2 = false;
 
     if (playBtn2) {
