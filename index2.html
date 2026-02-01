@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafif Ilham - Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* ============================
+           CSS STYLES
+           ============================ */
+        :root {
+            --bg-main: #0a0f18;
+            --bg-card: #111a2e;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8; /* Cyan Blue */
+            --accent-dark: #0284c7;
+            --border: rgba(56, 189, 248, 0.1); /* Subtle blue border */
+            --grid-line: rgba(56, 189, 248, 0.07);
+        }
+
+        body.light-mode {
+            --bg-main: #f0f4f8;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --accent: #0070f3;
+            --border: rgba(0, 0, 0, 0.1);
+            --grid-line: rgba(0, 0, 0, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        /* --- BACKGROUND ANIMATION (CYBER GRID) --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            
+            /* Grid Pattern */
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px;
+            
+            /* ANIMASI UTAMA: Menggerakkan posisi background */
+            animation: cyber-move 20s linear infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes cyber-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; } /* Bergerak diagonal */
+        }
+
+        /* Scanline Effect (Garis scan turun) */
+        .scanline {
+            position: fixed; top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            opacity: 0.3; z-index: 50; pointer-events: none;
+            animation: scan 6s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+        .section-pad { padding: 100px 0; }
+        .text-center { text-align: center; }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(var(--bg-main), 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+        }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        .dot { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .nav-actions { display: flex; align-items: center; gap: 15px; }
+
+        /* Button Header Baru */
+        .btn-header {
+            text-decoration: none; font-size: 0.9rem; font-weight: 600;
+            color: var(--bg-main); background: var(--text-main);
+            padding: 8px 18px; border-radius: 20px; transition: 0.3s;
+        }
+        .btn-header:hover { background: var(--accent); color: #fff; }
+
+        #theme-toggle { background: transparent; border: none; color: var(--text-main); cursor: pointer; font-size: 1.1rem; }
+
+        /* --- HERO SECTION --- */
+        .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
+        .hero-content { max-width: 800px; z-index: 2; }
+        .greeting { color: var(--accent); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 15px; }
+        .big-text { font-size: 4rem; line-height: 1.1; font-weight: 800; margin-bottom: 15px; }
+        .text-gradient { background: linear-gradient(to right, var(--accent), #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .typing-wrapper { font-size: 1.8rem; font-weight: 400; color: var(--text-muted); margin-bottom: 30px; }
+        .subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .btn.primary {
+            background: var(--accent); color: #fff; padding: 12px 35px; border-radius: 50px; 
+            text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
+        }
+        .glow-on-hover:hover { box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); transform: translateY(-3px); }
+
+        /* --- ABOUT SECTION (Split Layout) --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; }
+
+        /* Foto Styling */
+        .about-image { position: relative; max-width: 350px; margin: 0 auto; }
+        .img-box {
+            width: 100%; aspect-ratio: 1/1; border-radius: 20px; overflow: hidden;
+            border: 2px solid var(--border); position: relative; z-index: 2;
+            animation: float 6s ease-in-out infinite;
+        }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .decorative-box {
+            position: absolute; top: 20px; left: 20px; width: 100%; height: 100%;
+            border: 2px solid var(--accent); border-radius: 20px; z-index: 1; opacity: 0.3;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* Skills Tags */
+        .skills-wrapper { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .skill-tag { 
+            background: rgba(56, 189, 248, 0.1); color: var(--accent); 
+            padding: 6px 14px; border-radius: 5px; font-size: 0.85rem; font-weight: 600;
+        }
+
+        /* --- PROJECTS --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .project-card {
+            background: var(--bg-card); padding: 0; border-radius: 15px; border: 1px solid var(--border);
+            transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column;
+        }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .card-icon { font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
+        
+        /* Container Gambar Project */
+        .project-img {
+            width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
+            border-bottom: 1px solid var(--border); background-color: #000;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .project-img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s ease; }
+        .project-card:hover .project-img img { transform: scale(1.1); }
+
+        /* Container Teks Project */
+        .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-content h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .card-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+        .tech-stack { margin-top: auto; }
+        .tech-stack span { font-size: 0.8rem; margin-right: 10px; color: var(--accent); font-family: monospace; }
+
+        /* --- FOOTER & SOCIALS --- */
+        .social-bar { margin: 30px 0; font-size: 1.5rem; }
+        .social-bar a { color: var(--text-muted); margin: 0 15px; transition: 0.3s; }
+        .social-bar a:hover { color: var(--accent); }
+        .pb-small { padding-bottom: 30px; }
+
+        /* --- SCROLL ANIMATIONS --- */
+        .reveal-up, .reveal-left, .reveal-right { opacity: 0; transition: all 0.8s ease-out; }
+        .reveal-up { transform: translateY(50px); }
+        .reveal-left { transform: translateX(-50px); }
+        .reveal-right { transform: translateX(50px); }
+        .active { opacity: 1; transform: translate(0,0); }
+
+        /* --- CONTACT GRID --- */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+        .contact-card {
+            display: flex; align-items: center; background: var(--bg-card); border: 1px solid var(--border);
+            padding: 15px 20px; border-radius: 12px; text-decoration: none; transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px); border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); background: rgba(56, 189, 248, 0.05);
+        }
+        .icon-box {
+            width: 50px; height: 50px; background: rgba(255, 255, 255, 0.03); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; font-size: 1.5rem;
+            color: var(--accent); margin-right: 15px; transition: 0.3s;
+        }
+        .contact-card:hover .icon-box { background: var(--accent); color: #fff; box-shadow: 0 0 10px var(--accent); }
+        .info-box { display: flex; flex-direction: column; }
+        .platform { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+        .username { font-size: 1rem; font-weight: 600; color: var(--text-main); margin-top: 2px; }
+
+        /* --- SECTION TITLE --- */
+        .section-title {
+            font-size: 3rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px;
+            margin-bottom: 50px; color: var(--text-muted); line-height: 1; position: relative; display: inline-block;
+        }
+        .section-title .text-accent {
+            color: var(--accent); font-style: italic; padding-left: 10px;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.5), 0 0 40px rgba(56, 189, 248, 0.2);
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60%; height: 6px;
+            background: linear-gradient(90deg, var(--accent), transparent); margin-top: 15px; border-radius: 3px;
+        }
+
+        /* --- HAMBURGER MENU --- */
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); padding: 5px; }
+
+        /* --- ABOUT ME & BIO SECTION (DESKTOP) --- */
+        .sub-heading {
+            font-size: 1.2rem; color: var(--accent); margin: 20px 0 15px 0;
+            font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 5px; display: inline-block;
+        }
+        .bio-grid {
+            display: grid; grid-template-columns: 150px 1fr; gap: 10px; font-size: 0.95rem;
+        }
+        .bio-label { color: var(--text-muted); font-weight: 500; display: flex; align-items: center; gap: 8px; }
+        .bio-label i { color: var(--accent); width: 20px; text-align: center; }
+        .bio-value { color: var(--text-main); font-weight: 600; }
+
+        /* --- EDUCATION TIMELINE --- */
+        .timeline-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 20px; }
+        .timeline-item {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 25px; position: relative; transition: 0.3s ease; overflow: hidden;
+        }
+        .timeline-item:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 5px 15px rgba(56, 189, 248, 0.1); }
+        .timeline-item::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--border); transition: 0.3s;
+        }
+        .timeline-item:hover::before, .timeline-item.active::before { background: var(--accent); }
+        .timeline-year {
+            display: inline-block; background: rgba(56, 189, 248, 0.1); color: var(--accent);
+            padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;
+        }
+        .timeline-content h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 5px; }
+        .school-name { color: var(--text-muted); font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; }
+        .description { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* =========================================
+           MOBILE RESPONSIVE
+           ========================================= */
+        @media (max-width: 768px) {
+            /* Navbar & Layout */
+            .nav-wrapper { justify-content: space-between; align-items: center; position: relative; }
+            .hamburger { display: block; order: 3; }
+            .nav-actions { order: 2; margin-left: auto; margin-right: 15px; }
+            
+            .nav-menu {
+                position: absolute; top: 100%; right: 0; width: 200px;
+                background: var(--bg-card); border: 1px solid var(--border);
+                border-radius: 0 0 0 15px; box-shadow: -5px 10px 20px rgba(0,0,0,0.3);
+                display: none; flex-direction: column; padding: 10px 0; z-index: 999;
+            }
+            .nav-menu.active { display: flex; animation: slideIn 0.3s ease; }
+            .nav-links { display: flex; flex-direction: column; width: 100%; gap: 0; }
+            .nav-links li { width: 100%; text-align: left; }
+            .nav-links a { display: block; padding: 15px 25px; width: 100%; border-bottom: 1px solid var(--border); }
+            .nav-links a:hover { background: var(--accent); color: #fff; }
+
+            /* Hero Section Compact */
+            .hero { min-height: auto; padding-top: 130px; padding-bottom: 60px; }
+            .big-text { font-size: 2.2rem; margin-bottom: 10px; }
+            .typing-wrapper { font-size: 1.3rem; margin-bottom: 15px; }
+            .subtitle { font-size: 0.9rem; margin-bottom: 25px; padding: 0 10px; }
+            .btn.primary { padding: 10px 25px; font-size: 0.9rem; }
+
+            /* Spacing & Titles */
+            .container { width: 90%; }
+            .section-pad { padding: 50px 0; }
+            .section-title { font-size: 2rem; margin-bottom: 30px; }
+            .section-title::after { width: 100%; margin: 15px auto 0; }
+
+            /* About Me Compact */
+            .about-image { width: 140px; margin-bottom: 30px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 30px; margin-bottom: 40px !important; text-align: center; }
+            .intro-text p { font-size: 0.9rem; line-height: 1.6; }
+
+            /* =======================================================
+               PERBAIKAN BIO GRID UNTUK ANDROID (TEMPAT LAHIR FIX)
+               ======================================================= */
+            .bio-grid {
+                /* Lebarkan kolom label jadi 135px agar muat */
+                grid-template-columns: 135px 1fr; 
+                gap: 5px;
+                font-size: 0.85rem;
+                align-items: center; /* Rata tengah vertikal */
+                text-align: left; /* Kembalikan text ke kiri */
+            }
+
+            .bio-label {
+                white-space: nowrap; /* Mencegah teks turun baris */
+            }
+
+            .bio-value {
+                margin-bottom: 0; padding-left: 0;
+            }
+
+            /* Lain-lain */
+            .skill-tag { font-size: 0.75rem; padding: 5px 10px; }
+            .skills-wrapper { justify-content: center; }
+            
+            /* Timeline & Projects */
+            .timeline-container, .projects-grid, .contact-grid { grid-template-columns: 1fr; gap: 15px; }
+            .timeline-item { padding: 15px 20px; }
+            .timeline-year { font-size: 0.75rem; padding: 4px 10px; margin-bottom: 10px; }
+            .timeline-content h3 { font-size: 1rem; }
+            .school-name { font-size: 0.9rem; margin-bottom: 5px; }
+            .project-card { margin-bottom: 0; }
+            .project-img { aspect-ratio: 16 / 9; }
+            .card-content { padding: 20px; }
+            .contact-card { padding: 12px 15px; }
+            .btn-header { display: none; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <div class="scanline"></div>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">Rafif<span class="dot">.</span></div>
+            
+            <div class="hamburger" id="hamburger-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" aria-label="Switch Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container hero-content text-center">
+            <p class="greeting">Halo, Selamat Datang</p>
+            <h1 class="big-text">I'm <span class="text-gradient">Rafif Ilham Putra</span></h1>
+            <h2 class="typing-wrapper">I build <span id="typewriter"></span></h2>
+            <p class="subtitle">Cuman sebagian hobi, pencari cuan, dari hasil gabut dan jago dikit di pemrograman.</p>
+            <div class="btn-group">
+                <a href="#about" class="btn primary glow-on-hover">Tentang Saya <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-pad">
+        <div class="container">
+            
+            <div class="grid-2" style="margin-bottom: 80px;">
+                
+                <div class="about-image reveal-left">
+                    <div class="img-box">
+                        <img 
+                            src="img/profile.jpg" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/111a2e/38bdf8?text=Profile';" 
+                            alt="Rafif Profile"
+                        >
+                    </div>
+                    <div class="decorative-box"></div>
+                </div>
+
+                <div class="about-text reveal-right">
+                    <h2 class="section-title">Tentang <span class="text-accent">Saya</span></h2>
+                    
+                    <div class="intro-text">
+                        <p>Hai! Saya <strong>Rafif Ilham Putra R</strong>. Saya adalah seorang iseng pengembang web untuk menciptakan pengalaman digital yang mulus, responsif, dan fungsional.</p>
+                        <p>Saya memiliki ketertarikan mendalam dalam dunia teknologi, khususnya bagaimana barisan kode dapat berubah menjadi visual yang interaktif. Saya selalu bersemangat untuk mempelajari hal baru dan memecahkan masalah melalui logika pemrograman.</p>
+                    </div>
+
+                    <div class="bio-box">
+                        <h3 class="sub-heading">Profil Singkat</h3>
+                        <div class="bio-grid">
+                            <span class="bio-label"><i class="fas fa-user"></i> Nama Lengkap</span>
+                            <span class="bio-value">: Rafif Ilham Putra R</span>
+
+                            <span class="bio-label"><i class="fas fa-calendar-alt"></i> Umur</span>
+                            <span class="bio-value">: 17 Tahun</span>
+                            
+                            <span class="bio-label"><i class="fas fa-map-marker-alt"></i> Tempat Lahir</span>
+                            <span class="bio-value">: Nganjuk</span>
+                            
+                            <span class="bio-label"><i class="fas fa-home"></i> Alamat</span>
+                            <span class="bio-value">: Kertosono, Nganjuk</span>
+                            
+                            <span class="bio-label"><i class="fas fa-gamepad"></i> Hobi</span>
+                            <span class="bio-value">: Coding, Gaming, Musik</span>
+
+                            <span class="bio-label"><i class="fas fa-rocket"></i> Ambisi</span>
+                            <span class="bio-value">: Menjadi Fullstack Developer Expert</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-box" style="margin-top: 20px;">
+                        <h3>Tech Stack:</h3>
+                        <div class="skills-wrapper">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Node JS</span>
+                            <span class="skill-tag">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-section reveal-up">
+                <h2 class="section-title text-center" style="font-size: 2rem; margin-bottom: 40px;">Riwayat <span class="text-accent">Pendidikan</span></h2>
+                
+                <div class="timeline-container">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2013 - 2014</div>
+                        <div class="timeline-content">
+                            <h3>TK (Taman Kanak-Kanak)</h3>
+                            <p class="school-name">TK Pertiwi Baron</p>
+                            <p class="description">Lulus dengan nilai baik dan aktif dalam Taman Bermain.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015 - 2020</div>
+                        <div class="timeline-content">
+                            <h3>Sekolah Dasar (SD)</h3>
+                            <p class="school-name">SDN Baron 3</p>
+                            <p class="description">Mulai mengenal dasar-dasar komputer dan teknologi.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2021 - 2023</div>
+                        <div class="timeline-content">
+                            <h3>Sekolah Menengah Pertama (SMP)</h3>
+                            <p class="school-name">MTSN 1 Nganjuk</p>
+                            <p class="description">Mulai Gabut mendalami Rekayasa Perangkat Lunak dan pengembangan web dasar.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item active">
+                        <div class="timeline-year">2024 - Sekarang</div>
+                        <div class="timeline-content">
+                            <h3>Sekolah Menengah Atas (SMA)</h3>
+                            <p class="school-name">MAN 1 Nganjuk [IPS]</p>
+                            <p class="description">Serius mendalami Rekayasa Perangkat Lunak dan pengembangan web dasar.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div> 
+    </section>
+
+    <section id="projects" class="section-pad">
+        <div class="container">
+            <h2 class="section-title text-center">My <span class="text-accent">Project</span></h2>
+            
+            <div class="projects-grid">
+                
+                <div class="project-card reveal-up">
+                    <div class="project-img">
+                        <img 
+                            src="https://i.ibb.co.com/5gfnLLgs/2.jpg" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x338/1e293b/38bdf8?text=Project+1';" 
+                            alt="E-Commerce Dashboard"
+                        >
+                    </div>
+                    <div class="card-content">
+                        <h3>Web Display Product</h3>
+                        <p>Menampilan Etalase Produk Digital Dalam Sebuah Website.</p>
+                        <div class="tech-stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-up" style="transition-delay: 0.1s;">
+                    <div class="project-img">
+                        <img 
+                            src="https://i.ibb.co.com/d4sDb0hC/3.jpg" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x338/1e293b/38bdf8?text=Project+2';" 
+                            alt="Weather App"
+                        >
+                    </div>
+                    <div class="card-content">
+                        <h3>BOT WhatsApp 24/7</h3>
+                        <p>WhatsApp Automatic Order Digital Product With Payment Gateway.</p>
+                        <div class="tech-stack"><span>API</span><span>JavaScript, NodeJS</span></div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-up" style="transition-delay: 0.2s;">
+                    <div class="project-img">
+                        <img 
+                            src="https://placehold.co/600x338/1e293b/38bdf8?text=Project+Soon" 
+                            onerror="this.onerror=null; this.src='img/project3.jpg';" 
+                            alt="Portfolio Website"
+                        >
+                    </div>
+                    <div class="card-content">
+                        <h3>Coming Soon</h3>
+                        <p>None.</p>
+                        <div class="tech-stack"><span>HTML/CSS</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="section-pad pb-small">
+        <div class="container reveal-up">
+            <h2 class="section-title text-center">Contact <span class="text-accent">Me</span></h2>
+            <p class="subtitle text-center">Belajar bareng itu lebih seru daripada sendirian. Kalau kamu tertarik dengan karya saya atau ingin kenalan lebih lanjut, klik dibawah ya siapa tahu bisa akrab bareng!</p>
+            
+            <div class="contact-grid">
+                
+                <a href="https://wa.me/628123456789" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                    <div class="info-box">
+                        <span class="platform">WhatsApp</span>
+                        <span class="username">+62 821-3116-7086</span>
+                    </div>
+                </a>
+
+                <a href="https://instagram.com/rapz.npc" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-instagram"></i></div>
+                    <div class="info-box">
+                        <span class="platform">Instagram</span>
+                        <span class="username">@rapz.npc</span>
+                    </div>
+                </a>
+
+                <a href="https://facebook.com/" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-facebook-f"></i></div>
+                    <div class="info-box">
+                        <span class="platform">Facebook</span>
+                        <span class="username">Ra nduwe</span>
+                    </div>
+                </a>
+
+                <a href="https://threads.net/@rapz.npc" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-threads"></i></div>
+                    <div class="info-box">
+                        <span class="platform">Threads</span>
+                        <span class="username">@rapz.npc</span>
+                    </div>
+                </a>
+
+                <a href="https://youtube.com/@rapzva2" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-youtube"></i></div>
+                    <div class="info-box">
+                        <span class="platform">YouTube</span>
+                        <span class="username">RapzVA2</span>
+                    </div>
+                </a>
+
+            </div>
+            
+            <p class="copyright text-center" style="margin-top: 50px;">&copy; 2026 Rafif Ilham Putra R.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Theme Switcher
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeBtn.querySelector('i');
+
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+
+        // 2. Typing Effect
+        const textElement = document.getElementById('typewriter');
+        const texts = ['Websites.', 'Interfaces.', 'Experiences.'];
+        let count = 0;
+        let index = 0;
+        let currentText = '';
+        let letter = '';
+
+        (function type() {
+            if (count === texts.length) count = 0;
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+            textElement.textContent = letter;
+            if (letter.length === currentText.length) {
+                count++; index = 0;
+                setTimeout(type, 2000);
+            } else {
+                setTimeout(type, 100);
+            }
+        })();
+
+        // 3. Scroll Reveal (Up, Left, Right)
+        const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+
+            reveals.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger once on load
+
+        // --- 4. HAMBURGER MENU LOGIC ---
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Toggle Menu saat tombol hamburger diklik
+        hamburgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Ubah icon garis tiga jadi X
+            const icon = hamburgerBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Tutup menu otomatis saat salah satu link diklik
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                // Balikin icon ke garis tiga
+                const icon = hamburgerBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Tutup menu jika klik di luar menu
+        document.addEventListener('click', (e) => {
+            if (!hamburgerBtn.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+</html>

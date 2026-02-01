@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafif Ilham - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="dark-mode">
+
+    <div class="scanline"></div>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">Rafif<span class="dot">.</span></div>
+            
+            <div class="hamburger" id="hamburger-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" aria-label="Switch Theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container hero-content text-center">
+            <p class="greeting">Halo, Selamat Datang</p>
+            <h1 class="big-text">I'm <span class="text-gradient">Rafif Ilham Putra</span></h1>
+            <h2 class="typing-wrapper">I build <span id="typewriter"></span></h2>
+            <p class="subtitle">Cuman sebagian hobi, pencari cuan, dari hasil gabut dan jago dikit di pemrograman.</p>
+            <div class="btn-group">
+                <a href="#about" class="btn primary glow-on-hover">Tentang Saya <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </div>
+    </section>
+
+
+            <section id="about" class="section-pad">
+                <div class="container">
+                    
+                    <div class="grid-2" style="margin-bottom: 80px;">
+                        
+                        <div class="about-image reveal-left">
+                            <div class="img-box">
+                                <img 
+                                    src="profile.jpg" 
+                                    onerror="this.onerror=null; this.src='profile.jpg';" 
+                                    alt="Rafif Profile"
+                                >
+                            </div>
+                            <div class="decorative-box"></div>
+                        </div>
+        
+                        <div class="about-text reveal-right">
+                            <h2 class="section-title">Tentang <span class="text-accent">Saya</span></h2>
+                            
+                            <div class="intro-text">
+                                <p>Hai! Saya <strong>Rafif Ilham Putra R</strong>. Saya adalah seorang iseng pengembang web untuk menciptakan pengalaman digital yang mulus, responsif, dan fungsional.</p>
+                                <p>Saya memiliki ketertarikan mendalam dalam dunia teknologi, khususnya bagaimana barisan kode dapat berubah menjadi visual yang interaktif. Saya selalu bersemangat untuk mempelajari hal baru dan memecahkan masalah melalui logika pemrograman.</p>
+                            </div>
+        
+                            <div class="bio-box">
+                                <h3 class="sub-heading">Profil Singkat</h3>
+                                <div class="bio-grid">
+                                    <span class="bio-label"><i class="fas fa-user"></i> Nama Lengkap</span>
+                                    <span class="bio-value">: Rafif Ilham Putra R</span>
+        
+                                    <span class="bio-label"><i class="fas fa-calendar-alt"></i> Umur</span>
+                                    <span class="bio-value">: 17 Tahun</span> <span class="bio-label"><i class="fas fa-map-marker-alt"></i> Tempat Lahir</span>
+                                    <span class="bio-value">: Nganjuk</span> <span class="bio-label"><i class="fas fa-home"></i> Alamat</span>
+                                    <span class="bio-value">: Kertosono, Nganjuk</span> <span class="bio-label"><i class="fas fa-gamepad"></i> Hobi</span>
+                                    <span class="bio-value">: Coding, Gaming, Musik</span>
+        
+                                    <span class="bio-label"><i class="fas fa-rocket"></i> Ambisi</span>
+                                    <span class="bio-value">: Menjadi Fullstack Developer Expert</span>
+                                </div>
+                            </div>
+        
+                            <div class="skills-box" style="margin-top: 20px;">
+                                <h3>Tech Stack:</h3>
+                                <div class="skills-wrapper">
+                                    <span class="skill-tag">HTML</span>
+                                    <span class="skill-tag">CSS</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">Node JS</span>
+                                    <span class="skill-tag">Git</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="education-section reveal-up">
+                        <h2 class="section-title text-center" style="font-size: 2rem; margin-bottom: 40px;">Riwayat <span class="text-accent">Pendidikan</span></h2>
+                        
+                        <div class="timeline-container">
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-year">2013 - 2014</div>
+                                <div class="timeline-content">
+                                    <h3>TK (Taman Kanak-Kanak)</h3>
+                                    <p class="school-name">TK Pertiwi Baron</p>
+                                    <p class="description">Lulus dengan nilai baik dan aktif dalam Taman Bermain.</p>
+                                </div>
+                            </div>
+        
+                            <div class="timeline-item">
+                                <div class="timeline-year">2015 - 2020</div>
+                                <div class="timeline-content">
+                                    <h3>Sekolah Dasar (SD)</h3>
+                                    <p class="school-name">SDN Baron 3</p>
+                                    <p class="description">Mulai mengenal dasar-dasar komputer dan teknologi.</p>
+                                </div>
+                            </div>
+        
+                            <div class="timeline-item">
+                                <div class="timeline-year">2021 - 2023</div>
+                                <div class="timeline-content">
+                                    <h3>Sekolah Menengah Pertama (SMP)</h3>
+                                    <p class="school-name">MTSN 1 Nganjuk</p>
+                                    <p class="description">Mulai Gabut mendalami Rekayasa Perangkat Lunak dan pengembangan web dasar.</p>
+                                </div>
+                            </div>
+        
+                            <div class="timeline-item active">
+                                <div class="timeline-year">2024 - Sekarang</div>
+                                <div class="timeline-content">
+                                    <h3>Sekolah Menengah Atas (SMA)</h3>
+                                    <p class="school-name">MAN 1 Nganjuk [IPS]</p>
+                                    <p class="description">Serius mendalami Rekayasa Perangkat Lunak dan pengembangan web dasar.</p>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+        
+                </div> 
+            </section>
+
+ 
+        <section id="projects" class="section-pad">
+            <div class="container">
+                <h2 class="section-title text-center">My <span class="text-accent">Project</span></h2>
+                
+                <div class="projects-grid">
+                    
+                    <div class="project-card reveal-up">
+                        <div class="project-img">
+                            <img 
+                                src="https://i.ibb.co.com/5gfnLLgs/2.jpg" 
+                                onerror="this.onerror=null; this.src='img/project1.jpg';" 
+                                alt="E-Commerce Dashboard"
+                            >
+                        </div>
+                        <div class="card-content">
+                            <h3>Web Display Product</h3>
+                            <p>Menampilan Etalase Produk Digital Dalam Sebuah Website.</p>
+                            <div class="tech-stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                        </div>
+                    </div>
+    
+                    <div class="project-card reveal-up" style="transition-delay: 0.1s;">
+                        <div class="project-img">
+                            <img 
+                                src="https://i.ibb.co.com/d4sDb0hC/3.jpg" 
+                                onerror="this.onerror=null; this.src='img/project2.jpg';" 
+                                alt="Weather App"
+                            >
+                        </div>
+                        <div class="card-content">
+                            <h3>BOT WhatsApp 24/7</h3>
+                            <p>WhatsApp Automatic Order Digital Product With Payment Gateway.</p>
+                            <div class="tech-stack"><span>API</span><span>JavaScript, NodeJS</span></div>
+                        </div>
+                    </div>
+    
+                    <div class="project-card reveal-up" style="transition-delay: 0.2s;">
+                        <div class="project-img">
+                            <img 
+                                src="https://placehold.co/600x338/1e293b/38bdf8?text=Project+Soon" 
+                                onerror="this.onerror=null; this.src='img/project3.jpg';" 
+                                alt="Portfolio Website"
+                            >
+                        </div>
+                        <div class="card-content">
+                            <h3>Coming Soon</h3>
+                            <p>None.</p>
+                            <div class="tech-stack"><span>HTML/CSS</span></div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+
+    <footer id="contact" class="section-pad pb-small">
+        <div class="container reveal-up">
+            <h2 class="section-title text-center">Contact <span class="text-accent">Me</span></h2>
+            <p class="subtitle text-center">Belajar bareng itu lebih seru daripada sendirian. Kalau kamu tertarik dengan karya saya atau ingin kenalan lebih lanjut, klik dibawah ya siapa tahu bisa akrab bareng!</p>
+            
+            <div class="contact-grid">
+                
+                <a href="https://wa.me/628123456789" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                    <div class="info-box">
+                        <span class="platform">WhatsApp</span>
+                        <span class="username">+62 821-3116-7086</span>
+                    </div>
+                </a>
+
+                <a href="https://instagram.com/rapz.npc" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-instagram"></i></div>
+                    <div class="info-box">
+                        <span class="platform">Instagram</span>
+                        <span class="username">@rapz.npc</span>
+                    </div>
+                </a>
+
+                <a href="https://facebook.com/" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-facebook-f"></i></div>
+                    <div class="info-box">
+                        <span class="platform">Facebook</span>
+                        <span class="username">Ra nduwe</span>
+                    </div>
+                </a>
+
+                <a href="https://threads.net/@rapz.npc" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-threads"></i></div>
+                    <div class="info-box">
+                        <span class="platform">Threads</span>
+                        <span class="username">@rapz.npc</span>
+                    </div>
+                </a>
+
+                <a href="https://youtube.com/@rapzva2" target="_blank" class="contact-card">
+                    <div class="icon-box"><i class="fab fa-youtube"></i></div>
+                    <div class="info-box">
+                        <span class="platform">YouTube</span>
+                        <span class="username">RapzVA2</span>
+                    </div>
+                </a>
+
+            </div>
+            
+            <p class="copyright text-center" style="margin-top: 50px;">&copy; 2026 Rafif Ilham Putra R.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
